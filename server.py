@@ -164,13 +164,12 @@ from _thread import *
 import tkinter as tk
 from tkinter import messagebox
  
-# функция для обработки каждого клиента
+
 def client_thread (con):
-    data = con.recv(1024)           # получаем данные от клиента
-    message = data.decode()         # преобразуем байты в строку
-    messagebox.showerror('Server-Успех!', message)
-    con.send('Данные приняты'.encode())      # отправляем сообщение клиенту
-    con.close()                     # закрываем подключение
+    data = con.recv(1024)
+    messagebox.showerror('Server-Успех!', data)
+    con.send(data)
+    con.close()
  
 server = socket.socket()            # создаем объект сокета сервера
 hostname = socket.gethostname()     # получаем имя хоста локальной машины
